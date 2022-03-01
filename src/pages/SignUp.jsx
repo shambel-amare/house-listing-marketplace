@@ -1,11 +1,12 @@
 import {useState} from 'react'
+import { toast } from 'react-toastify'
 import {Link,useNavigate} from 'react-router-dom'
 import {getAuth, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
 import {db} from '../firebase.config'
 import {setDoc, doc, serverTimestamp} from 'firebase/firestore'
-import {ReactComponent as ArroeRightIcon} from '../assets/svg/keyboardArrowRightIcon.svg'
+import {ReactComponent as ArrowRightIcon} from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
-
+import OAuth from '../components/OAuth'
 function SignUp() {
   const [showPassword,setShowPassword]=useState(false)
   const [formData,setFormData]=useState({
@@ -47,7 +48,7 @@ function SignUp() {
 
     }
     catch (error){
-      console.log(error)
+      toast.error('Registration Failed!')
     }
   }
 
@@ -70,12 +71,11 @@ function SignUp() {
         Sign Up
       </p>
       <button className="signUpButton">
-        <ArroeRightIcon fill='#ffffff' width='34px' height='34px'/>
+        <ArrowRightIcon fill='#ffffff' width='34px' height='34px'/>
       </button>
       </div>
-      </form> 
-      {/* Google OAuth */}
-
+      </form>
+      <OAuth />
       <Link to='/sign-in' className='registerLink'>Sign In Instead</Link>
     </div>
   )
