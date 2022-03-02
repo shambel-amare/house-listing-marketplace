@@ -65,7 +65,7 @@ function SignUp() {
           <input type={showPassword?'text':'password'} className='passwordInput' placeholder="Password" id='password' value={password} onChange={onChange} />
           <img className="showPassword" src={visibilityIcon} alt='show password' onClick={()=>setShowPassword((prevState)=>!prevState)}/>
         </div>
-      <Link to='/forgot-password' className='forgotPasswordLink'> Forgot Password</Link> 
+      {/* <Link to='/forgot-password' className='forgotPasswordLink'> Forgot Password</Link>  */}
       <div className="signUpBar"> 
       <p className="signUpText">
         Sign Up
@@ -73,6 +73,7 @@ function SignUp() {
       <button className="signUpButton">
         <ArrowRightIcon fill='#ffffff' width='34px' height='34px'/>
       </button>
+      <Link to='/forgot-password' className='forgotPasswordLink'> Forgot Password</Link>
       </div>
       </form>
       <OAuth />

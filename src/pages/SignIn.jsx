@@ -52,19 +52,18 @@ function SignIn() {
           <input type={showPassword?'text':'password'} className='passwordInput' placeholder="Password" id='password' value={password} onChange={onChange} />
           <img className="showPassword" src={visibilityIcon} alt='show password' onClick={()=>setShowPassword((prevState)=>!prevState)}/>
         </div>
-      <Link to='/forgot-password' className='forgotPasswordLink'> Forgot Password</Link> 
-      <div className="signInBar"> 
-      <p className="signInText">
-        Sign In
-      </p>
-      <button className="signInButton">
-        <ArrowRightIcon fill='#ffffff' width='34px' height='34px'/>
-      </button>
-      
-      </div>
       </form> 
+      <div className="signInBar"> 
+        <p className="signInText">
+          Sign In
+        </p>
+        <button className="signInButton">
+          <ArrowRightIcon fill='#ffffff' width='34px' height='34px'/>
+        </button>
+        <Link to='/forgot-password' className='forgotPasswordLink'> Forgot Password</Link> 
+      </div>
       <OAuth /> 
-      <Link to='/sign-up' className='pageHeader registerLink'>Sign Up Instead</Link>
+      <Link to='/sign-up' className='registerLink'>Sign Up Instead</Link>
     </div>
   )
 }
