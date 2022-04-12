@@ -6,7 +6,7 @@ function Explore() {
 
 
   return (
-    <div className='explore'>
+    <section className='explore'>
       <header>
       <p className="pageHeader">Explore</p>      
 
@@ -26,7 +26,7 @@ function Explore() {
           </Link>
         </div>
       </main>
-    </div>
+    </section>
   )
 }
 
