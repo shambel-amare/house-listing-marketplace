@@ -1,6 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap');
-* {
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap");
+:root {
+  --color-primary: #5468ff;
+  --color-orange: #ff6000;
+  --color-yellow: #fbaa19;
+  --color-blue: #0e0c36;
+
+  --color-secondary: #0cbc8b;
+  --color-link: #0cbc8b;
+  --color-background: #f2f4f6;
+  --color-logo: #011439;
+  --color-header: #003057;
+
+  --color-white: #fff;
+  --color-light: rgba(184, 182, 182, 0.774);
+  --color-black: rgba(0, 0, 0, 0.601);
+  --transition: all 500ms ease;
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  outline: 0;
+  list-style: none;
+  text-decoration: none;
 }
 
 html::-webkit-scrollbar {
@@ -8,12 +32,12 @@ html::-webkit-scrollbar {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #f2f4f8;
   margin: 0;
   box-sizing: border-box;
 }
-section{
+section {
   padding: 0 2rem;
 }
 a {
@@ -39,7 +63,7 @@ button {
   height: 3rem;
   width: 100%;
   outline: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   padding: 0 3rem;
   font-size: 1rem;
 }
@@ -95,6 +119,14 @@ button {
 .explore {
   margin: 6rem;
 }
+.pageContainer,
+.offers,
+.profile,
+.listingDetails,
+.category,
+.explore {
+  margin-top: 10rem;
+}
 @media (min-width: 1024px) {
   .pageContainer,
   .offers,
@@ -105,8 +137,81 @@ button {
     margin: 3rem;
     margin-bottom: 6rem;
   }
+  .pageContainer,
+  .offers,
+  .profile,
+  .listingDetails,
+  .category,
+  .explore {
+    margin-top: 10rem;
+  }
 }
-
+.main-page-container {
+  height: 100vh;
+}
+.searchOption {
+  display: flex;
+  gap: 1rem;
+  background: var(--color-white);
+  height: 4rem;
+  margin: 2rem 0 0 3rem;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.searchOption > * {
+  padding: 0 1rem;
+  padding: 0.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.searchOption > h2 {
+  width: 30rem;
+  height: 100%;
+}
+.searchOption > a:hover {
+  outline: 1px solid var(--color-header);
+}
+.searchBox {
+  background: var(--color-white);
+  border: 1rem;
+  width: 100%;
+  height: 10rem;
+  gap: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.searchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  width: 65%;
+}
+.searchBar > * {
+  width: 100%;
+  height: 100%;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  margin-left: 3rem;
+  border: 2px solid var(--color-link);
+  /* outline: 1px solid var(--color-link); */
+}
+.searchIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  margin: 1.5rem;
+}
+.searchIcon > svg {
+  width: 100%;
+  height: 100%;
+}
 .loadingSpinnerContainer {
   position: fixed;
   top: 0;
@@ -132,21 +237,21 @@ button {
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 @keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -154,32 +259,61 @@ button {
   font-size: 2rem;
   font-weight: 800;
 }
-
+.pageHeader .mainTextHeader {
+  font-family: "Ubuntu";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 122px;
+  line-height: 140px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: var(--color-orange);
+}
 .navbar {
   position: fixed;
   left: 0;
-  bottom: 0;
+  top: 0;
   right: 0;
-  height: 85px;
-  background-color: #ffffff;
+  height: 5rem;
+  background-color: #003057;
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
+  overflow: hidden;
 }
-
 .navbarNav {
   width: 100%;
   margin-top: 0.75rem;
   overflow-y: hidden;
+  overflow-x: hidden;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
 }
-
+.navbarNav .navbarListItems:first-child {
+  width: 100%;
+  justify-content: center;
+  gap: 5rem;
+}
+.navbarNav .navbarListItems:nth-child(2) {
+  width: 100%;
+  justify-content: flex-end;
+  gap: 2rem;
+}
 .navbarListItems {
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin: 0 4rem;
+  gap: 2rem;
 }
 
 .navbarListItem {
@@ -196,18 +330,21 @@ button {
   font-weight: 600;
   color: #8f8f8f;
 }
+.logo {
+  padding-left: 4rem;
+}
 .navbarListItemNameActive {
   color: #2c2c2c;
 }
 
 .nameInput {
   margin-bottom: 2rem;
-  background: url('./assets/svg/badgeIcon.svg') #ffffff 2.5% center no-repeat;
+  background: url("./assets/svg/badgeIcon.svg") #ffffff 2.5% center no-repeat;
 }
 
 .emailInput {
   margin-bottom: 2rem;
-  background: url('./assets/svg/personIcon.svg') #ffffff 2.5% center no-repeat;
+  background: url("./assets/svg/personIcon.svg") #ffffff 2.5% center no-repeat;
 }
 
 .passwordInputDiv {
@@ -216,7 +353,7 @@ button {
 
 .passwordInput {
   margin-bottom: 2rem;
-  background: url('./assets/svg/lockIcon.svg') #ffffff 2.5% center no-repeat;
+  background: url("./assets/svg/lockIcon.svg") #ffffff 2.5% center no-repeat;
 }
 
 .showPassword {
@@ -255,7 +392,15 @@ button {
     justify-content: center;
   }
 }
-
+@media (max-width: 1024px) {
+  .navbarListItems {
+    margin: 0;
+  }
+  .navbarNav .navbarListItems:first-child {
+    padding: 0;
+    gap: 2rem;
+  }
+}
 .signInText,
 .signUpText {
   font-size: 1.5rem;
@@ -416,15 +561,22 @@ button {
 }
 
 .categoryListings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   padding: 0;
 }
 
 .categoryListing {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 1.5rem;
   align-items: center;
   margin-bottom: 1rem;
   position: relative;
+  box-shadow: 2px 2px 2px 2px #8f8f8f;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 .categoryListingLink {
@@ -432,15 +584,14 @@ button {
 }
 
 .categoryListingImg {
-  width: 30%;
-  height: 100px;
-  border-radius: 1.5rem;
+  width: 100%;
+  height: auto;
   object-fit: cover;
 }
 @media (min-width: 1024px) {
   .categoryListingImg {
-    width: 19%;
-    height: 217px;
+    width: 100%;
+    height: 70%;
   }
 }
 
@@ -449,7 +600,7 @@ button {
 }
 @media (min-width: 1024px) {
   .categoryListingDetails {
-    width: 79%;
+    width: 80%;
   }
 }
 
@@ -640,7 +791,7 @@ button {
 
 .logOut {
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
@@ -772,7 +923,7 @@ button {
 .formInputFile {
   border: none;
   outline: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .formInputSmall,
 .formInputFile {
@@ -837,4 +988,13 @@ button {
   margin-left: 1rem;
   font-size: 0.8rem;
   opacity: 0.75;
+}
+
+/* UTILITY CLASSES */
+.display-flex {
+  display: flex;
+}
+.align-items-center {
+  justify-content: center;
+  align-items: center;
 }

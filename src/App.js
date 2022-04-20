@@ -9,9 +9,11 @@ import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
 import Contact from './pages/Contact'
 import Listing from './pages/Listing'
+import SearchBar from './components/SearchBar'
 
 import CreateListing from './pages/CreateListing'
 import SignUp from './pages/SignUp'
+import Test from './components/Test'
 import ForgotPassword from './pages/ForgotPassword'
 import PrivateRoute from './components/PrivateRoute'
 
@@ -19,6 +21,7 @@ function App() {
   return (
     <>
     <Router>
+    <Navbar />
      
       <Routes>
         <Route path='/' element={<Explore />} />
@@ -33,9 +36,10 @@ function App() {
         <Route path='/create-listing' element={<CreateListing />} />
         <Route path='/category/:categoryName/:listingId' element={<Listing/>}/>
         <Route path='/contact/:landlordId' element={<Contact />} />
+        <Route path='/searchbar' element={<SearchBar />} />
+        <Route path='/test' element={<Test />} />
 
       </Routes>
-       <Navbar />
     </Router>
     <ToastContainer autoClose={3000}/>
     </>
