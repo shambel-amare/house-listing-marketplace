@@ -82,7 +82,8 @@ function Explore() {
         </div>
         <div className="searchBox">
           {/* DROP DOWN GOES HERE */}
-          {/* <SearchBar /> */}
+          <SearchBar type="location" />
+          <SearchBar type="type" />
           <div className="searchIcon">
             <SearchIcon />
           </div>
