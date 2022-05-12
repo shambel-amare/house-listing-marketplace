@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import OAuth from "../components/OAuth";
-import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 import { toast } from "react-toastify";
 
@@ -45,12 +44,12 @@ function SignIn() {
 
   if (!logedIn) {
     return (
-      <div className="pageContainer">
+      <div className="pageContainer align-items-center">
         <header>
-          <p className="pageHeader ">Wellcome Back!</p>
+          <p className="pageHeader signinHeader ">Wellcome Back!</p>
         </header>
 
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="form_input align-items-center">
           <input
             type="email"
             className="emailInput"
@@ -78,10 +77,7 @@ function SignIn() {
           </div>
 
           <div className="signInBar">
-            <p className="signInText">Sign In</p>
-            <button className="signInButton">
-              <ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
-            </button>
+            <button className="btn-primary signInButton">Sign In</button>
 
             <Link to="/forgot-password" className="forgotPasswordLink">
               {" "}

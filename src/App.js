@@ -15,7 +15,6 @@ import CreateListing from './pages/CreateListing'
 import SignUp from './pages/SignUp'
 import Test from './components/Test'
 import ForgotPassword from './pages/ForgotPassword'
-import Practice from './components/practice'
 import PrivateRoute from './components/PrivateRoute'
 
 function App() {
@@ -39,7 +38,6 @@ function App() {
         <Route path='/contact/:landlordId' element={<Contact />} />
         <Route path='/searchbar' element={<SearchBar />} />
         <Route path='/test' element={<Test />} />
-        <Route path='/practice' element={<Practice />} />
 
       </Routes>
     </Router>

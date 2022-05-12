@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
-import { collection, query, doc, getDocs } from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase.config";
-function SearchBar({ type }) {
-  const [idValue, setIdValue] = useState();
+function SearchBar({ type, placeholder }) {
   const [inputValue, setValue] = useState("");
   const [selectedValue, setSelectedValue] = useState(null);
   //Handle input change
@@ -16,52 +15,35 @@ function SearchBar({ type }) {
     setSelectedValue(value);
   };
 
-  const uniq = (a) => {
-    console.log("Uniq function called");
-    console.log("input:", a);
-    var prims = { boolean: {}, number: {}, string: {} },
-      objs = [];
-
-    return a.filter((item) => {
-      console.log("item of a:", item);
-
-      var type = typeof item;
-      if (type in prims) {
-        return prims[type].hasOwnProperty(item)
-          ? false
-          : (prims[type][item] = true);
-      } else return objs.indexOf(item) >= 0 ? false : objs.push(item);
-    });
-  };
-
   const fetchData = async (inputValue) => {
     const locQuery = query(collection(db, "locations"));
 
     const locQuerySnapshot = await getDocs(locQuery);
-    const locationData = [];
+    const searchData = [];
     const filteredData = [];
-    //const typeData = [];
 
     locQuerySnapshot.forEach((doc) => {
+      //get the docs
       const files = { ...doc.data() };
+      //take out each ke as eachkey for each doc is different and can be used as identifier
       const keys = Object.values(files);
       keys.forEach((key) => {
         if (type === "location") {
-          locationData.push({
+          searchData.push({
             label: `${key.location}`,
             value: `${key.location}`,
           });
         } else if (type === "type") {
-          locationData.push({
+          searchData.push({
             label: `${key.type}`,
             value: `${key.type}`,
           });
         }
       });
     });
-    locationData
+    searchData
       .filter((val) => {
-        if (inputValue == "") {
+        if (inputValue === "") {
           filteredData.push(val);
         } else if (val.label.toLowerCase().includes(inputValue.toLowerCase())) {
           filteredData.push(val);
@@ -70,7 +52,23 @@ function SearchBar({ type }) {
       .map((val) => {
         filteredData.push(val);
       });
-    return filteredData;
+    // FILTERING THE UNIQUE VALUES
+    // OPTION @3
+    const seen = new Set();
+    var arr = [...filteredData];
+    arr.filter((el) => {
+      const duplicate = seen.has(el.value);
+      seen.add(el.value);
+      return !duplicate;
+    });
+    const uniqueData = [];
+    seen.forEach((el) => {
+      uniqueData.push({
+        label: `${el}`,
+        value: `${el}`,
+      });
+    });
+    return uniqueData;
   };
 
   return (
@@ -78,7 +76,7 @@ function SearchBar({ type }) {
       <AsyncSelect
         cacheOptions
         defaultOptions
-        placeholder="location"
+        placeholder={placeholder}
         value={selectedValue}
         loadOptions={fetchData}
         onInputChange={handleInputChange}
