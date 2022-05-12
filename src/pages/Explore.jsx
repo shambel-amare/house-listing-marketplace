@@ -110,10 +110,10 @@ function Explore() {
             {/* Drop down is done based on selection of the option selected*/}
             {/* either rent or sale or buy */}
             {selectedCategory === "rent" ? (
-              <>
+              <div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label
-                    htmlfor="location"
+                    htmlFor="location"
                     style={{ padding: "0.5rem 0.75rem" }}
                   >
                     What Do you want to rent?
@@ -122,7 +122,7 @@ function Explore() {
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label
-                    htmlfor="location"
+                    htmlFor="location"
                     style={{ padding: "0.5rem 0.75rem" }}
                   >
                     location
@@ -131,19 +131,19 @@ function Explore() {
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label
-                    htmlfor="location"
+                    htmlFor="location"
                     style={{ padding: "0.5rem 0.75rem" }}
                   >
                     Category
                   </label>
                   <SearchBar type="location" placeholder="Category..." />
                 </div>
-              </>
+              </div>
             ) : selectedCategory === "buy" ? (
-              <>
+              <div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label
-                    htmlfor="location"
+                    htmlFor="location"
                     style={{ padding: "0.5rem 0.75rem" }}
                   >
                     What Do you want to Buy?
@@ -152,7 +152,7 @@ function Explore() {
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label
-                    htmlfor="location"
+                    htmlFor="location"
                     style={{ padding: "0.5rem 0.75rem" }}
                   >
                     location
@@ -161,14 +161,14 @@ function Explore() {
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label
-                    htmlfor="location"
+                    htmlFor="location"
                     style={{ padding: "0.5rem 0.75rem" }}
                   >
                     Category
                   </label>
                   <SearchBar type="location" placeholder="Category..." />
                 </div>
-              </>
+              </div>
             ) : (
               navigate("/create-listing")
             )}
