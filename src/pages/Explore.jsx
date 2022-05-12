@@ -112,19 +112,28 @@ function Explore() {
             {selectedCategory === "rent" ? (
               <>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <label for="location" style={{ padding: "0.5rem 0.75rem" }}>
+                  <label
+                    htmlfor="location"
+                    style={{ padding: "0.5rem 0.75rem" }}
+                  >
                     What Do you want to rent?
                   </label>
                   <SearchBar type="location" placeholder="Select..." />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <label for="location" style={{ padding: "0.5rem 0.75rem" }}>
+                  <label
+                    htmlfor="location"
+                    style={{ padding: "0.5rem 0.75rem" }}
+                  >
                     location
                   </label>
                   <SearchBar type="location" placeholder="location..." />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <label for="location" style={{ padding: "0.5rem 0.75rem" }}>
+                  <label
+                    htmlfor="location"
+                    style={{ padding: "0.5rem 0.75rem" }}
+                  >
                     Category
                   </label>
                   <SearchBar type="location" placeholder="Category..." />
@@ -133,19 +142,28 @@ function Explore() {
             ) : selectedCategory === "buy" ? (
               <>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <label for="location" style={{ padding: "0.5rem 0.75rem" }}>
+                  <label
+                    htmlfor="location"
+                    style={{ padding: "0.5rem 0.75rem" }}
+                  >
                     What Do you want to Buy?
                   </label>
                   <SearchBar type="location" placeholder="Select..." />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <label for="location" style={{ padding: "0.5rem 0.75rem" }}>
+                  <label
+                    htmlfor="location"
+                    style={{ padding: "0.5rem 0.75rem" }}
+                  >
                     location
                   </label>
                   <SearchBar type="location" placeholder="location..." />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <label for="location" style={{ padding: "0.5rem 0.75rem" }}>
+                  <label
+                    htmlfor="location"
+                    style={{ padding: "0.5rem 0.75rem" }}
+                  >
                     Category
                   </label>
                   <SearchBar type="location" placeholder="Category..." />
