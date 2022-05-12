@@ -85,7 +85,7 @@ button {
 
 .primaryButton {
   cursor: pointer;
-  background: #00cc66;
+  background: var(--color-orange);
   border-radius: 1rem;
   padding: 0.85rem 2rem;
   color: #ffffff;
@@ -151,9 +151,9 @@ button {
 }
 .searchOption {
   display: flex;
-  gap: 1rem;
   background: var(--color-white);
   height: 4rem;
+  width: max-content;
   margin: 2rem 0 0 3rem;
   align-items: center;
   justify-content: flex-start;
@@ -168,7 +168,7 @@ button {
   font-size: 1.5rem;
 }
 .searchOption > h2 {
-  width: 30rem;
+  width: auto;
   height: 100%;
 }
 .searchOption > a:hover {
@@ -178,8 +178,8 @@ button {
   background: var(--color-white);
   border: 1rem;
   width: 100%;
-  height: 10rem;
   gap: 2rem;
+  padding: 1.5rem;
   border-radius: 1rem;
   display: flex;
   justify-content: flex-end;
@@ -206,7 +206,6 @@ button {
   justify-content: center;
   align-items: center;
   height: 4rem;
-  margin: 1.5rem;
 }
 .searchIcon > svg {
   width: 100%;
@@ -432,6 +431,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .socialIconDiv {
@@ -931,7 +931,15 @@ button {
   padding: 0.9rem 0.7rem;
   text-align: center;
 }
-
+.form_input {
+  width: 50%;
+  margin: 0 auto;
+}
+.signinHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .formInputName {
   padding: 0.9rem 1rem;
   width: 90%;
@@ -997,4 +1005,26 @@ button {
 .align-items-center {
   justify-content: center;
   align-items: center;
+}
+.filter {
+  width: 15rem;
+  padding: 0.5rem 0.75rem;
+}
+.btn-primary {
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  width: auto;
+  text-align: center;
+  color: var(--color-white);
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  background: var(--color-link);
+}
+.btn-active {
+  color: var(--color-white);
+  background: var(--color-link);
+}
+.search {
+  margin-top: 4rem;
 }

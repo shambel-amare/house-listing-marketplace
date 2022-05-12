@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import SearchBar from "../components/SearchBar";
 import {
   getStorage,
   ref,
@@ -19,13 +18,18 @@ import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 function CreateListing() {
   const [loading, setLoading] = useState(false);
-  const [docrefId, setDocRefId] = useState("");
   const [geolocationEnabled, setGeolocationEnabled] = useState(false);
   const [formData, setFormData] = useState({
-    type: "rent",
+    type: "sale",
     name: "",
     bedrooms: 1,
     bathrooms: 1,
@@ -77,7 +81,7 @@ function CreateListing() {
   }, [isMounted]);
   const onSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("Form Data =>", formData);
     setLoading(true);
 
     if (discountedPrice >= regularPrice) {
@@ -137,14 +141,10 @@ function CreateListing() {
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
             switch (snapshot.state) {
               case "paused":
-                console.log("Upload is paused");
-
                 break;
               case "running":
-                console.log("Upload is running");
                 break;
               default:
                 break;
@@ -204,8 +204,6 @@ function CreateListing() {
 
     const docRef = await addDoc(collection(db, "listings"), formDataCopy);
     // Adding location and type as searching parameters to a collection
-    // const locationRef = await setDoc(collection(db, "locations"), locations,);
-    // const typeRef = await setDoc(collection(db, "types"), types);
     await setDoc(
       doc(db, "locations", "location"),
       {
@@ -216,13 +214,6 @@ function CreateListing() {
       },
       { merge: true }
     );
-    setDocRefId({ docRefData: `${docRef.id}` });
-    //   db.collection('users').doc('random-id').set(
-    //     {   "friends": {
-    //               "friend-uid-3": true
-    //           }
-    //      },{merge:true}
-    // )
     setLoading(false);
 
     toast.success("Listing Saved!");
@@ -237,7 +228,6 @@ function CreateListing() {
     if (e.target.value === "false") {
       boolean = false;
     }
-
     // Files
     if (e.target.files) {
       setFormData((prevState) => ({
@@ -253,15 +243,19 @@ function CreateListing() {
         [e.target.id]: boolean ?? e.target.value,
       }));
     }
+    if (e.target.value === "sale" || e.target.value === "rent") {
+      setFormData((prevState) => ({
+        ...prevState,
+        [e.target.id]: e.target.value,
+      }));
+    }
   };
-
   if (loading) {
     return <Spinner />;
   }
 
   return (
     <div className="profile">
-      {/* <SearchBar docrefId={docrefId.docRefData} /> */}
       <header>
         <p className="pageHeader">Make a Listing</p>
       </header>
@@ -270,26 +264,28 @@ function CreateListing() {
           style={{ margin: "0 auto", display: "flex", flexDirection: "column" }}
           onSubmit={onSubmit}
         >
-          <label className="formLabel">Sell / Rent</label>
           <div className="formButtons">
-            <button
-              type="button"
-              className={type === "sale" ? "formButtonActive" : "formButton"}
-              id="type"
-              value="sale"
-              onClick={onMutate}
-            >
-              Sell
-            </button>
-            <button
-              type="button"
-              className={type === "rent" ? "formButtonActive" : "formButton"}
-              id="type"
-              value="rent"
-              onClick={onMutate}
-            >
-              Rent
-            </button>
+            <FormControl>
+              <FormLabel className="formLabel">Catagory</FormLabel>
+              <RadioGroup
+                aria-labelledby="demo-controlled-radio-buttons-group"
+                name="controlled-radio-buttons-group"
+                value={type}
+                onChange={onMutate}
+                row
+              >
+                <FormControlLabel
+                  value="sale"
+                  control={<Radio id="type" />}
+                  label="Sale"
+                />
+                <FormControlLabel
+                  value="rent"
+                  control={<Radio id="type" />}
+                  label="Rent"
+                />
+              </RadioGroup>
+            </FormControl>
           </div>
           <label className="formLabel">Name</label>
           <input

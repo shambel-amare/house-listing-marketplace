@@ -1,22 +1,29 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
 import { ReactComponent as OfferIcon } from "../assets/svg/localOfferIcon.svg";
 import { ReactComponent as ExploreIcon } from "../assets/svg/exploreIcon.svg";
-import { ReactComponent as PersonOutlineIcon } from "../assets/svg/personOutlineIcon.svg";
-import { ReactComponent as LogoHome } from "../assets/svg/LogoHome.svg";
 import { AiOutlineLogin } from "react-icons/ai";
 import { MdCreateNewFolder } from "react-icons/md";
 import { FiPhoneCall } from "react-icons/fi";
 import { BiCategoryAlt } from "react-icons/bi";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const auth = getAuth();
+  const [logInVal, setLogInVal] = useState("LOG IN");
   const pathMatchRoute = (route) => {
     if (route === location.pathname) {
       return true;
     }
   };
-
+  const handleLoging = () => {
+    if (auth.currentUser) {
+      setLogInVal(auth.currentUser.displayName);
+      navigate("/profile");
+    }
+  };
   return (
     <header className="navbar">
       <div className="logo">
@@ -29,8 +36,8 @@ function Navbar() {
           <li className="navbarListItem">
             <ExploreIcon
               fill={pathMatchRoute("/") ? "#0CBC8B" : "#ffff"}
-              width="36px"
-              height="36px"
+              width="26px"
+              height="26px"
               onClick={() => navigate("/")}
             />
             <a href="/">
@@ -44,7 +51,6 @@ function Navbar() {
                   pathMatchRoute("/")
                     ? {
                         color: "white",
-                        lineHeight: "1.25rem",
                         fontSize: "1.25rem",
                       }
                     : {
@@ -59,8 +65,8 @@ function Navbar() {
           <li className="navbarListItem">
             <OfferIcon
               fill={pathMatchRoute("/offers") ? "#0CBC8B" : "#ffff"}
-              width="36px"
-              height="36px"
+              width="26px"
+              height="26px"
               onClick={() => navigate("/offers")}
             />
             <a href="/offers">
@@ -74,7 +80,6 @@ function Navbar() {
                   pathMatchRoute("/offers")
                     ? {
                         color: "white",
-                        lineHeight: "1.25rem",
                         fontSize: "1.25rem",
                       }
                     : {
@@ -91,11 +96,10 @@ function Navbar() {
               fill={pathMatchRoute("/category") ? "#0CBC8B" : "#ffff"}
               style={{
                 color: "white",
-                lineHeight: "1.25rem",
                 fontSize: "1.25rem",
                 color: "#F3F1F1",
-                width: "36px",
-                height: "36px",
+                width: "26px",
+                height: "26px",
               }}
               onClick={() => navigate("/category")}
             />
@@ -110,8 +114,7 @@ function Navbar() {
                   pathMatchRoute("/category")
                     ? {
                         color: "white",
-                        lineHeight: "1.25rem",
-                        fontSize: "1.25rem",
+                        fontSize: "1rem",
                       }
                     : {
                         color: "#F3F1F1",
@@ -131,7 +134,7 @@ function Navbar() {
               height="36px"
               onClick={() => navigate("/sign-in")}
             />
-            <a href="/sign-in">
+            <button onclick={handleLoging}>
               <p
                 className={
                   pathMatchRoute("/sign-in")
@@ -142,7 +145,6 @@ function Navbar() {
                   pathMatchRoute("/sign-in")
                     ? {
                         color: "white",
-                        lineHeight: "1.25rem",
                         fontSize: "1.25rem",
                       }
                     : {
@@ -150,9 +152,9 @@ function Navbar() {
                       }
                 }
               >
-                LOG IN
+                {logInVal}
               </p>
-            </a>
+            </button>
           </li>
           <li className="navbarListItem">
             <MdCreateNewFolder
@@ -172,7 +174,6 @@ function Navbar() {
                   pathMatchRoute("/create-listing")
                     ? {
                         color: "white",
-                        lineHeight: "1.25rem",
                         fontSize: "1.25rem",
                       }
                     : {
@@ -202,7 +203,6 @@ function Navbar() {
                   pathMatchRoute("/contact")
                     ? {
                         color: "white",
-                        lineHeight: "1.25rem",
                         fontSize: "1.25rem",
                       }
                     : {
