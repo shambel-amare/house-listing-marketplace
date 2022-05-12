@@ -12,7 +12,7 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const auth = getAuth();
-  const [logInVal, setLogInVal] = useState("LOG IN");
+
   const pathMatchRoute = (route) => {
     if (route === location.pathname) {
       return true;
@@ -20,7 +20,6 @@ function Navbar() {
   };
   const handleLoging = () => {
     if (auth.currentUser) {
-      setLogInVal(auth.currentUser.displayName);
       navigate("/profile");
     }
   };
@@ -134,7 +133,7 @@ function Navbar() {
               height="36px"
               onClick={() => navigate("/sign-in")}
             />
-            <button onclick={handleLoging}>
+            <a href="/sign-in">
               <p
                 className={
                   pathMatchRoute("/sign-in")
@@ -152,9 +151,9 @@ function Navbar() {
                       }
                 }
               >
-                {logInVal}
+                LOG IN
               </p>
-            </button>
+            </a>
           </li>
           <li className="navbarListItem">
             <MdCreateNewFolder

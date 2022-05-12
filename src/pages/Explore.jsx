@@ -110,7 +110,7 @@ function Explore() {
             {/* Drop down is done based on selection of the option selected*/}
             {/* either rent or sale or buy */}
             {selectedCategory === "rent" ? (
-              <div>
+              <>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label
                     htmlFor="location"
@@ -138,9 +138,9 @@ function Explore() {
                   </label>
                   <SearchBar type="location" placeholder="Category..." />
                 </div>
-              </div>
+              </>
             ) : selectedCategory === "buy" ? (
-              <div>
+              <>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <label
                     htmlFor="location"
@@ -168,7 +168,7 @@ function Explore() {
                   </label>
                   <SearchBar type="location" placeholder="Category..." />
                 </div>
-              </div>
+              </>
             ) : (
               navigate("/create-listing")
             )}

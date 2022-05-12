@@ -80,7 +80,6 @@ function SignIn() {
             <button className="btn-primary signInButton">Sign In</button>
 
             <Link to="/forgot-password" className="forgotPasswordLink">
-              {" "}
               Forgot Password
             </Link>
           </div>
